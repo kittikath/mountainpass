@@ -3,41 +3,47 @@ import styled from 'styled-components';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import Services from './Services';
 
-export const getAPI = async () => {
-    const response = await fetch('http://cgi.cse.unsw.edu.au/~cs6080/data/score.json', {
-      method: 'GET',
-    });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.error);
-    }
-    return data;
-}
+export const OutlinedButton = styled.button`
+    color: #999999;
+    border: 1px dashed #999999;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin: 1rem;
+    padding: 1rem;
+    width: 10rem;
+    height: 6rem;
+`;
+
+export const SolidButton = styled.button`
+    background: #FF3232;
+    color: #FFFFFF;
+    font-size: 1rem;
+    margin: 1rem;
+    border-radius: 5px;
+    padding: 1rem;
+    border: none;
+    width: 10rem;
+    height: 6rem;
+`;
 
 const Dashboard = () => {
+
+    
     return (
         <div className="App-header">
             <Container maxWidth="lg">
-                <h5 style={{color: "#555555", fontSize: "20px", textAlign: "left"}}>
-                Quick Actions
-                </h5>
-                <Stack spacing={2} display="flex" direction="row" flexWrap="wrap">
-                    <Button variant="outlined">Add Service</Button>
-                    <Button variant="outlined">Deploy Gatsby Website</Button>
-                    <Button variant="contained">Deploy Node Project</Button>
+                <h5 style={{color: "#555555", fontSize: "20px", textAlign: "left"}}>Quick Actions</h5>
+                <Stack spacing={2} display="flex" direction="row" flexWrap="wrap" alignItems="Center">
+                    <OutlinedButton>Add Service</OutlinedButton>
+                    <OutlinedButton>Deploy Gatsby Website</OutlinedButton>
+                    <SolidButton>Deploy Node Project</SolidButton>
                 </Stack>
+                <Services/>
             </Container>
-            <Container maxWidth="lg">
-                <h5 style={{color: "#555555", fontSize: "20px", textAlign: "left"}}>
-                Services
-                </h5>
-                <Stack spacing={2} display="flex" direction="row" flexWrap="wrap">
-                    <Button variant="outlined">Add Service</Button>
-                    <Button variant="outlined">Deploy Gatsby Website</Button>
-                    <Button variant="contained">Deploy Node Project</Button>
-                </Stack>
-            </Container>
+            
         </div>
     );
   };
