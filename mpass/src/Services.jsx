@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -53,20 +53,33 @@ export const getAPI = async () => {
 
 
 const Services = () => {
-    useEffect(() => {
-        getAPI();
-    }, []);
+  const [serviceData, setServiceData] = useState([]);
+  const [search, setSearch] = useState('');
+ 
+      
+  const filterListings = (services, query) => {
+    if (!query) {
+      return services;
+    }
+    return services.filter((service) => {
+      const nameFilter = service.name.toLowerCase();
+      const versionFilter = service.version.toLowerCase();
+      return((nameFilter.includes(query) || versionFilter.includes(query)));
+    })
+  }
+  useEffect(() => {
+    getAPI();
+  }, []);
+  return (
+    <SmallContainer>
+        <h5 style={{color: "#555555", fontSize: "20px", textAlign: "left"}}>Services</h5>
+        <div style={flexStyling}>
+            <TextField id="standard-basic" label="Search" variant="standard" onChange={(e) => setSearch(e.target.value)}/>
+            <Button variant="outlined">Add Service</Button>
+        </div>
+        <OutlinedButton>Add Service</OutlinedButton>
         
-    return (
-        <SmallContainer>
-            <h5 style={{color: "#555555", fontSize: "20px", textAlign: "left"}}>Services</h5>
-            <div style={flexStyling}>
-                <TextField id="standard-basic" label="Standard" variant="standard" />
-                <Button variant="outlined">Add Service</Button>
-            </div>
-            <OutlinedButton>Add Service</OutlinedButton>
-            
-        </SmallContainer>
+    </SmallContainer>
   );
 };
 

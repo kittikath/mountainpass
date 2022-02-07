@@ -6,6 +6,7 @@ import Stack from '@mui/material/Stack';
 import Services from './Services';
 
 export const OutlinedButton = styled.button`
+    background-color: transparent;
     color: #999999;
     border: 1px dashed #999999;
     box-sizing: border-box;
@@ -30,8 +31,6 @@ export const SolidButton = styled.button`
 `;
 
 const Dashboard = () => {
-
-    
     return (
         <div className="App-header">
             <Container maxWidth="lg">
